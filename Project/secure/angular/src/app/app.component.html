@@ -1,0 +1,68 @@
+<div>
+        <div>
+                <div>
+                        <h2>Login</h2>
+                        <form>
+                                <div>
+                                        <div>
+                                                <input type="username" name="username_login" id="username_login" placeholder="username" [(ngModel)]="username_login"/>
+                                        </div>
+                                        <div>
+                                                <input type="password" name="password_login" id="password_login" placeholder="password" [(ngModel)]="password_login"/>
+                                        </div>
+                                        <div>
+                                                <select [(ngModel)]="safeness_login" name="safeness_login" id="safeness_login">
+                                                        <option value="0">No sanitization</option>
+                                                        <option value="1">Only letters and numbers</option>
+                                                        <option value="2">Sanitize \'</option>
+                                                        <option value="3">Hash inputs</option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <button type="button" (click)="loginUser()">Login</button>
+                        </form>
+                </div>
+                <div>
+                        <h2>XSS</h2>
+                        <form>
+                                <div>
+                                        <div>
+                                                <input type="username" name="username_xss" id="username_xss" placeholder="username" [(ngModel)]="username_xss"/>
+                                        </div>
+                                        <div>
+                                                <select class="form-control" [(ngModel)]="safeness_xss" name="safeness_xss" id="safeness_xss">
+                                                        <option value="0">No sanitization</option>
+                                                        <option value="1">Sanitize special characters</option>
+                                                        <option value="2">Add headers</option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <button type="button" (click)="xss()">XSS</button>
+                        </form>
+                </div>
+                <div>
+                        <h2>Path Traversal</h2>
+                        <form>
+                                <div>
+                                        <div>
+                                                <input type="username" name="username_lfi" id="username_lfi" placeholder="username" [(ngModel)]="username_lfi"/>
+                                        </div>
+                                        <div>
+                                                <input type="text" [(ngModel)]="path_lfi" name="path_lfi" id="path_lfi" placeholder="path" />
+                                        </div>
+                                        <div>
+                                                <select class="form-control" [(ngModel)]="safeness_lfi" name="safeness_lfi" id="safeness_lfi">
+                                                        <option value="0">No sanitization</option>
+                                                        <option value="1">Sanitize special characters</option>
+                                                        <option value="2">Hash name of file</option>
+                                                        <option value="3">Check database</option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <button type="button" (click)="pathTraversal()">PathTraversal</button>
+                        </form>
+                </div>
+                <div [innerHTML]="ret | sanitizeHtml"></div>
+                <div [innerHTML]="ret_html"></div>
+        </div>
+</div>
