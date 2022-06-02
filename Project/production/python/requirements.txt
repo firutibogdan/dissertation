@@ -1,0 +1,4 @@
+mysql-connector
+jinja2
+sanic
+sanic_auth

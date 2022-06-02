@@ -1,0 +1,86 @@
+version: '3.1'
+
+services:
+  # MySQL database
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    stdin_open: true
+    tty: true
+
+  # Python3 + Flask
+  python-api:
+    container_name: python-api
+    build: ./python
+    links:
+      - db
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+  
+  # VueJS + ExpressJS
+  express-api:
+    build:
+      context: ./express
+      dockerfile: Dockerfile
+    ports:
+      - "3080:3080"
+    links:
+      - db
+    depends_on:
+      - db
+    container_name: express-api
+    volumes:
+        - ./express:/usr/src/app/express
+        - /usr/src/app/express/node_modules
+  vue-ui:
+    build:
+      context: ./vue
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    links:
+      - express-api
+    depends_on:
+      - express-api
+    container_name: vue-ui
+    volumes:
+        - ./vue:/usr/src/app/vue
+        - /usr/src/app/vue/node_modules
+  
+  # Elm + Clojure
+  clojure-api:
+    build:
+      context: ./clojure_backend
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3000"
+    links:
+      - db
+    depends_on:
+      - db
+    container_name: clojure-api
+    volumes:
+        - ./clojure_backend:/usr/src/app/clojure_backend
+  elm-ui:
+    build:
+      context: ./elm
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8000"
+    links:
+      - clojure-api
+    depends_on:
+      - clojure-api
+    container_name: elm-ui
+    volumes:
+      - ./elm:/usr/src/app/elm
+      - /usr/src/app/elm/node_modules

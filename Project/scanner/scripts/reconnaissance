@@ -1,0 +1,11 @@
+{
+        "domain": "http://0.0.0.0:8080",
+        "exploits": [
+                {
+                        "name": "reconnaissance",
+                        "custom_paths": "data/paths_20.txt",
+                        "min_port": 8000,
+                        "max_port": 8100
+                }
+        ]
+}

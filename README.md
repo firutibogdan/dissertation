@@ -29,19 +29,19 @@ Run the docker using **docker-compose up** and then open the browser.
 
 ##### VueJS + ExpressJS
 Use as username **admin ' -- test** and no password for login
-Use nothing for XSS hack
+Use nothing for XSS hack (ex. <iframe src=http://xss.rocks/scriptlet.html></iframe>)
 Use **../../../../../../../../../../../../../../../../etc/passwd** for path for Path Traversal
 * http://localhost:8081
 
 ##### AngularJS + MeteorJS
 Use as username **admin ' -- test** and no password for login
-Use nothing for XSS hack
+Use nothing for XSS hack (ex. <iframe src=http://xss.rocks/scriptlet.html></iframe>)
 Use **../../../../../../../../../../../../../../../../etc/passwd** for path for Path Traversal
 * http://localhost:8082
 
 ##### ReactJS + NextJS
 Use as username **admin ' -- test** and no password for login
-Use nothing for XSS hack
+Use nothing for XSS hack (ex. <iframe src=http://xss.rocks/scriptlet.html></iframe>)
 Use **../../../../../../../../../../../../../../../../etc/passwd** for path for Path Traversal
 * http://localhost:8083
 

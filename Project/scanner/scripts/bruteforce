@@ -1,0 +1,98 @@
+{
+	"domain": "http://0.0.0.0:8081",
+	"exploits": [
+		{
+			"name": "SQL Injection",
+			"path": "/login",
+			"expected": "redirect",
+			"search_for": [
+				{
+					"tag": "input",
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "text"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "placeholder",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "class",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "id",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "name",
+							"value": ["username", "name", "email", "phone"]
+						}
+					],
+					"action": "fill",
+					"fill_with": "data/users.txt"
+				},
+				{
+					"tag": "input",
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "password"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "placeholder",
+							"value": ["password"]
+						},
+						{
+							"key": "class",
+							"value": ["password"]
+						},
+						{
+							"key": "id",
+							"value": ["password"]
+						},
+						{
+							"key": "name",
+							"value": ["password"]
+						}
+					],
+					"action": "fill",
+					"fill_with": "data/passwords.txt"
+				},
+				{
+					"tag": ["input", "button"],
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "submit"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "class",
+							"value": ["submit"]
+						},
+						{
+							"key": "id",
+							"value": ["submit"]
+						},
+						{
+							"key": "name",
+							"value": ["submit"]
+						},
+						{
+							"key": "value",
+							"value": ["Sign In", "Login", "Log In"]
+						}
+					],
+					"action": "click"
+				}
+			]
+		}
+	]
+}

