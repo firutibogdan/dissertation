@@ -39,7 +39,7 @@ def reconnaissance_stage(url, current_exploit, next_exploits, driver, report_fil
 				pass
 
 		# run PortScan
-		nmScan.scan(domain, '{}-{}'.format(min_port, max_port))
+		nmScan.scan(domain, '{}-{}'.format(min_port, max_port), '-T4', True)
 
 		# write report to file
 		report_file.write('## Reconnaissance Open Ports {}-{} ##\n'.format(min_port, max_port))
